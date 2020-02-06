@@ -11356,3 +11356,7 @@ a.text-dark:focus {
   }
 }
 
+h1.title {
+  text-align: center;
+}
+
