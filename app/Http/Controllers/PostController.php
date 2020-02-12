@@ -13,4 +13,10 @@ class PostController extends Controller
         // dd($posts);
         return view("post.index")->withPosts($posts);
     }
+    
+    public function single($slug){
+        $post = Post::where('slug',$slug)->firstOrFail();
+        // dd($post);
+        return view("post.single")->withPost($post);
+    }
 }

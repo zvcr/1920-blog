@@ -8,7 +8,7 @@
                 <div class="posts">
                 @foreach($posts as $post)
                 <div class="post">
-                    <p class="post-title">Title: <a href="#">{{ $post->title }}</a></p><br/>
+                    <p class="post-title">Title: <a href="/post/{{ $post->slug }}">{{ $post->title }}</a></p><br/>
                     <i>Geplaatst op: {{ $post->published_at ?? "Nog niet gepubliseerd" }}</i>
                 </div>
                 @endforeach
