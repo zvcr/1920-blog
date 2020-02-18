@@ -11365,6 +11365,11 @@ h1.title {
   margin-bottom: 0;
 }
 
+.posts .post i.post-published-at {
+  display: block;
+  text-align: right;
+}
+
 .post-single h1.title {
   text-align: left;
 }
