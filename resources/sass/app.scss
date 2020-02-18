@@ -10,3 +10,25 @@
 h1.title{
     text-align: center;
 }
+
+.posts{
+    .post{
+        h2.post-title{
+            a{
+                color: black;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.post-single{
+    h1.title{
+        text-align: left;
+    }
+    .single-post{
+        p.post-content{
+            font-size: 20px;
+        }
+    }
+}
