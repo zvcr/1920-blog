@@ -36,4 +36,21 @@ class PostController extends Controller
 
         return redirect('/posts');
     }
+
+    public function edit($id){
+        $post = Post::findOrFail($id);
+
+        return view('post.edit')->withPost($post);
+    }
+
+    public function update($id){
+        $post = Post::findOrFail($id);
+
+        $post->title = request('txtTitle');
+        $post->slug = request('txtSlug');
+        $post->content = request('txtContent');
+        $post->save();
+
+        return view("post.single")->withPost($post);
+    }
 }
