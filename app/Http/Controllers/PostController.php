@@ -50,7 +50,15 @@ class PostController extends Controller
         $post->slug = request('txtSlug');
         $post->content = request('txtContent');
         $post->save();
+        
+        return redirect()->route('post.show', $post->slug);
+    }
 
-        return view("post.single")->withPost($post);
+    public function destroy($id){
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return redirect()->route('post.index');
     }
 }

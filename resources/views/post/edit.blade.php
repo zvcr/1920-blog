@@ -23,7 +23,26 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Save post</button>
             </form>
+            <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-post-form').submit();">
+                Delete post
+            </button>
+            <form id="delete-post-form" action="/posts/{{$post->id}}" method="post" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
         </div>
     </div>
 </div>
 @endsection
+
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="{{ route('logout') }}"
+       onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+</div>
