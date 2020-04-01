@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Post;
 
 class PostController extends Controller
@@ -31,7 +32,7 @@ class PostController extends Controller
         $post->title = request('txtTitle');
         $post->slug = request('txtSlug');
         $post->content = request('txtContent');
-        $post->author = 1;
+        $post->author = Auth::user()->id;
         $post->save();
 
         return redirect('/posts');
@@ -60,5 +61,14 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('post.index');
+    }
+
+    public function publish($id){
+        $post = Post::findOrFail($id);
+
+        $post->published_at = now();
+        $post->save();
+
+        return redirect()->route('post.show', $post->slug);
     }
 }

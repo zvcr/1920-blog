@@ -26,3 +26,4 @@ Route::post('/posts', 'PostController@store')->name('post.store');
 Route::get('/posts/{id}/edit', 'PostController@edit')->name('post.edit');
 Route::put('/posts/{id}', 'PostController@update')->name('post.update');
 Route::delete('/posts/{id}', 'PostController@destroy')->name('post.destroy');
+Route::post('/posts/{id}/publish', 'PostController@publish')->name('post.publish');

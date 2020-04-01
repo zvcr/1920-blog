@@ -11,7 +11,14 @@
                     <hr/>
                     <i>Geplaatst op: {{ $post->published_at ?? "Not yet published" }}</i>
                     @auth()
-                    <a href="#" class="btn btn-success">Publish post</a>
+                    @if(!$post->published_at)
+                    <button class="btn btn-success" onclick="event.preventDefault(); document.getElementById('publish-post-form').submit();">
+                        Publish post
+                    </button>
+                    <form id="publish-post-form" action="/posts/{{$post->id}}/publish" method="POST" style="display:none;">
+                        @csrf;
+                    </form>
+                    @endif
                     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit post</a>
                     @endauth
                 </div>
