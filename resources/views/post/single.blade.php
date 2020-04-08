@@ -21,7 +21,27 @@
                     @endif
                     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit post</a>
                     @endauth
+                    <hr/>
+                    <div class="comments">
+                        @foreach($post->comments as $comment)
+                            {{$comment->content}}<br/>
+                        @endforeach
+                    </div>
                 </div>
+                @auth()
+                <hr>
+                    <div class="single-post-comment">
+                        <p class="comment-title">Any comments?</p>
+                        <form action="/posts/{{$post->id}}/comment" method="post">
+                            @csrf
+                            <div class="form-group">
+                            <label for="txtComment">Comment</label>
+                            <textarea class="form-control" name="txtComment" id="txtComment" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save comment</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
         </div>
     </div>
