@@ -7,6 +7,16 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Helpers
+.pull-right{
+    float: right;
+}
+.full-width{
+    width: 100%;
+}
+
+//Styling
+
 h1.title{
     text-align: center;
 }
@@ -34,11 +44,42 @@ h1.title{
         p.post-content{
             font-size: 20px;
         }
+        .comments{
+            .comment{
+                padding: 8px;
+                .comment-image{
+                    width: 50px;
+                    float: left;
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: fill;
+                    }
+                }
+                .comment-details{
+                    margin-left: 50px;
+                    i.comment-info{
+                        font-size: 12px;
+                    }
+                    p.comment-content{
+                        font-size: 16px;
+                    }
+                    .comment-delete{
+                        line-height: 0.6;
+                        font-size: 12px;
+                        margin-top: -2rem;
+                    }
+                }
+            }
+        }
     }
     .single-post-comment{
         p.comment-title{
             font-size: 24px;
             font-style: italic;
+        }
+        #btn-comment-login{
+            margin-top: -7px;
         }
     }
 }

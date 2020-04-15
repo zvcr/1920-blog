@@ -24,24 +24,46 @@
                     <hr/>
                     <div class="comments">
                         @foreach($post->comments as $comment)
-                            {{$comment->content}}<br/>
+                            <div class="comment">
+                                <div class="comment-image">
+                                    <img src="/images/user.png">
+                                </div>
+                                <div class="comment-details">
+                                    <i class="comment-info">Commentend by: {{$comment->author->name}} at {{$comment->created_at}}</i>
+                                    <p class="comment-content">{{$comment->content}}</p>
+                                    @auth()
+                                        <button class="btn btn-danger comment-delete" onclick="event.preventDefault(); document.getElementById('delete-comment-form').submit();">
+                                            Delete comment
+                                        </button>
+                                        <form id="delete-comment-form" action="/comment/{{$comment->id}}" method="post" style="display: none;">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                    @endauth
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
-                @auth()
                 <hr>
-                    <div class="single-post-comment">
-                        <p class="comment-title">Any comments?</p>
-                        <form action="/posts/{{$post->id}}/comment" method="post">
-                            @csrf
-                            <div class="form-group">
-                            <label for="txtComment">Comment</label>
-                            <textarea class="form-control" name="txtComment" id="txtComment" rows="5"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save comment</button>
-                        </form>
-                    </div>
-                @endauth
+                <div class="single-post-comment">
+                    <p class="comment-title">Any comments?</p>
+                    @auth()
+                    <form action="/posts/{{$post->id}}/comment" method="post">
+                        @csrf
+                        <div class="form-group">
+                        <label for="txtComment">Comment</label>
+                        <textarea class="form-control" name="txtComment" id="txtComment" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width">Save comment</button>
+                    </form>
+                    @else
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Please login in order to post a comment...</strong>
+                            <a id="btn-comment-login" class="btn btn-primary pull-right" href="/login" role="button">Login</a>
+                        </div>
+                    @endauth
+                </div>
             </div>
         </div>
     </div>

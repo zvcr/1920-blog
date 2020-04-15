@@ -10882,6 +10882,14 @@ a.text-dark:focus {
   }
 }
 
+.pull-right {
+  float: right;
+}
+
+.full-width {
+  width: 100%;
+}
+
 h1.title {
   text-align: center;
 }
@@ -10904,8 +10912,46 @@ h1.title {
   font-size: 20px;
 }
 
+.post-single .single-post .comments .comment {
+  padding: 8px;
+}
+
+.post-single .single-post .comments .comment .comment-image {
+  width: 50px;
+  float: left;
+}
+
+.post-single .single-post .comments .comment .comment-image img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
+.post-single .single-post .comments .comment .comment-details {
+  margin-left: 50px;
+}
+
+.post-single .single-post .comments .comment .comment-details i.comment-info {
+  font-size: 12px;
+}
+
+.post-single .single-post .comments .comment .comment-details p.comment-content {
+  font-size: 16px;
+}
+
+.post-single .single-post .comments .comment .comment-details .comment-delete {
+  line-height: 0.6;
+  font-size: 12px;
+  margin-top: -2rem;
+}
+
 .post-single .single-post-comment p.comment-title {
   font-size: 24px;
   font-style: italic;
+}
+
+.post-single .single-post-comment #btn-comment-login {
+  margin-top: -7px;
 }
 

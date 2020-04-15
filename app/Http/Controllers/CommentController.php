@@ -20,4 +20,10 @@ class CommentController extends Controller
         $comment->save();
         return redirect()->route('post.show', $post->slug);
     }
+
+    public function destroy($commentid){
+        $comment = Comment::findOrFail($commentid);
+        $comment->delete();
+        return redirect()->route('post.show', $comment->post->slug);
+    }
 }
