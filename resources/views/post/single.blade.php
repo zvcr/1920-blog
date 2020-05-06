@@ -11,7 +11,7 @@
                     <hr/>
                     <i>Geplaatst op: {{ $post->published_at ?? "Not yet published" }}</i>
                     @auth()
-                    @if(!$post->published_at)
+                    @if(!$post->published_at && Auth::user()->can('publish',$post))
                     <button class="btn btn-success" onclick="event.preventDefault(); document.getElementById('publish-post-form').submit();">
                         Publish post
                     </button>
@@ -19,7 +19,9 @@
                         @csrf;
                     </form>
                     @endif
-                    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit post</a>
+                    @can('update', $post)
+                        <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit post</a>
+                    @endcan
                     @endauth
                     <hr/>
                     <div class="comments">
@@ -31,7 +33,7 @@
                                 <div class="comment-details">
                                     <i class="comment-info">Commentend by: {{$comment->author->name}} at {{$comment->created_at}}</i>
                                     <p class="comment-content">{{$comment->content}}</p>
-                                    @auth()
+                                    @can('delete',$comment)
                                         <button class="btn btn-danger comment-delete" onclick="event.preventDefault(); document.getElementById('delete-comment-form').submit();">
                                             Delete comment
                                         </button>
@@ -39,7 +41,7 @@
                                             @csrf
                                             @method('delete')
                                         </form>
-                                    @endauth
+                                    @endcan
                                 </div>
                             </div>
                         @endforeach

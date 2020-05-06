@@ -34,15 +34,11 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    public function edit($id){
-        $post = Post::findOrFail($id);
-
+    public function edit(Post $post){
         return view('post.edit')->withPost($post);
     }
 
-    public function update($id){
-        $post = Post::findOrFail($id);
-
+    public function update(Post $post){
         $post->title = request('txtTitle');
         $post->slug = request('txtSlug');
         $post->content = request('txtContent');
@@ -51,17 +47,13 @@ class PostController extends Controller
         return redirect()->route('post.show', $post->slug);
     }
 
-    public function destroy($id){
-        $post = Post::findOrFail($id);
-
+    public function destroy(Post $post){
         $post->delete();
 
         return redirect()->route('post.index');
     }
 
-    public function publish($id){
-        $post = Post::findOrFail($id);
-
+    public function publish(Post $post){
         $post->published_at = now();
         $post->save();
 
